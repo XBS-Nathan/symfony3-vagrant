@@ -1,0 +1,40 @@
+---
+- hosts: all
+  sudo:  true
+  vars:
+    doc_root: /var/www/
+    domain_name: mysite.dev
+    sys_packages:
+      - vim
+    php_packages:
+      - { name: pear, package: php-pear }
+      - { name: xdebug, package: php5-xdebug }
+      - { name: curl, package: php5-curl }
+      - { name: mcrypt, package: php5-mcrypt }
+      - { name: mysql, package: php5-mysql }
+      - { name: redis, package: php5-redis }
+      - { name: memcached, package: php5-memcached }
+      - { name: sqlite, package: php5-sqlite }
+      - { name: gd, package: php5-gd }
+    php_extensions:
+      - { name: "mongo", package: "pecl.php.net/mongo" }
+      - { name: "xhprof", package: "pecl.php.net/xhprof-beta" }
+    php_config:
+      - { param: "memory_limit", value: "256M" }
+      - { param: "date.timezone", value: "Europe/London" }
+
+  roles:
+    - init
+    - nginx
+    - php5-fpm
+    - php5-cli
+    - php5-common
+    - composer
+    - phpunit
+    - mariadb
+    - mongo
+    - git
+    - sqlite
+    - rabbitmq
+    - redis
+    - memcached
