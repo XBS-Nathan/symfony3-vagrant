@@ -12,7 +12,15 @@
       - build-essential
       - python-software-properties
 
-  - name: Install extra packages from the config
+  - name: Add ppa repository
+    sudo: yes
+    apt_repository: repo=ppa:ondrej/{{ php_ppa }}
+
+  - name: Update apt again
+    sudo: yes
+    apt:  update_cache=yes
+
+  - name: Install extra packages
     sudo: yes
     apt:  pkg={{ item }} state=latest
     with_items: sys_packages

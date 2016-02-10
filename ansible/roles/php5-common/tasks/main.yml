@@ -25,16 +25,3 @@
   command: /usr/sbin/php5enmod {{ item.name }} creates=/etc/php5/cli/conf.d/20-{{ item.name }}.ini
   with_items: php_extensions
   notify: restart php5-fpm
-
-- debug: var=php_config
-
-- name: Configure PHP settings
-  sudo: yes
-  notify: restart php5-fpm
-  lineinfile:
-      dest: /etc/php5/fpm/php.ini
-      regexp: "^{{ item.param }}"
-      insertafter: "^;{{ item.param }}"
-      line: "{{ item.param }} = {{ item.value }}"
-  with_items: php_config
-
