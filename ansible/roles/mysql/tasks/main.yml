@@ -11,5 +11,8 @@
 - name: Add root user from anywhere to MySQL
   command: mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;"
 
-- name: Create MySQL database symfony
-  command: mysql -u root -e "CREATE DATABASE IF NOT EXISTS symfony;"
+- name: Create MySQL database
+  command: mysql -u root -e "CREATE DATABASE IF NOT EXISTS {{ database }};"
+
+#- name: Import application database
+#  command: mysql -u root -e {{ database }} < {{ database_import_src }}

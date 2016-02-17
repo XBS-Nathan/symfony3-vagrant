@@ -4,10 +4,17 @@
     apt:  pkg=nginx state=latest
 
   - name: Ensure nginx log directory exists
-    file: dest=/var/log/nginx/symfony state=directory
+    file: dest=/var/log/nginx state=directory
 
-  - name: Change default nginx site
+  - name: Change default nginx site to magento tempalte
     sudo: yes
-    template: src=default.tpl dest=/etc/nginx/sites-available/default
+    template: src=magento.tpl dest=/etc/nginx/sites-available/default
     notify: restart nginx
+    when: platform == "magento"
+
+  - name: Change default nginx site to symfony template
+    sudo: yes
+    template: src=symfony.tpl dest=/etc/nginx/sites-available/default
+    notify: restart nginx
+    when: platform == "symfony"
 

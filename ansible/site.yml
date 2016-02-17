@@ -2,10 +2,16 @@
 - hosts: all
   sudo:  true
   vars:
-    doc_root: /var/www/web
+    doc_root: /var/www/
+    platform: magento
+    server_name: dev.batterystation.co.uk
+    database: magento
+    database_import_src: /var/www/vagrant/import/database.sql
     sys_packages:
       - mcrypt
       - vim
+      - git
+
     php_packages:
       - { name: dev, package: php5-dev }
       - { name: pear, package: php-pear }
@@ -14,8 +20,6 @@
       - { name: mcrypt, package: php5-mcrypt }
       - { name: mysql, package: php5-mysql }
       - { name: redis, package: php5-redis }
-      - { name: apc, package: php-apc }
-      - { name: memcached, package: php5-memcached }
       - { name: sqlite, package: php5-sqlite }
       - { name: gd, package: php5-gd }
     php_extensions:
@@ -25,7 +29,7 @@
     php_ppa: php5
     nodejs:
       version: _5.x
-      packages: [casperjs, phantomjs, bower, gulp]
+      packages: [bower, gulp]
   roles:
     - init
     - nginx
@@ -36,11 +40,6 @@
     - phpunit
     - mysql
     - mongo
-    - git
-    - curl
-    - sqlite
-    - wget
     - rabbitmq
     - redis
-    - memcached
     - nodejs
