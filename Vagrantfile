@@ -24,12 +24,16 @@ Vagrant.configure("2") do |config|
     # Configure VirtualBox environment
     config.vm.provider :virtualbox do |v|
         v.name = (0...8).map { (65 + rand(26)).chr }.join
-        v.customize [ "modifyvm", :id, "--memory", 512 ]
+        v.customize [ "modifyvm", :id, "--memory", 4096 ]
+        v.customize ["modifyvm", :id, "--cpus", "4"]
+        v.customize ["modifyvm", :id, "--ioapic", "on"]
+        v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
     end
 
     # Provision the box
     config.vm.provision :ansible do |ansible|
         ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+        ansible.verbose = "vvv"
         ansible.playbook = "ansible/site.yml"
     end
 end
