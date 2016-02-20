@@ -1,17 +1,16 @@
----
-- hosts: all
+  hosts: all
   sudo:  true
   vars:
-    doc_root: /var/www/
-    platform: magento
-    server_name: dev.batterystation.co.uk
-    database: magento
-    database_import_src: /var/www/vagrant/import/database.sql
+    doc_root: '/var/www/'
+    platform: 'magento'
+    server_name: 'dev.batterystation.co.uk'
+    database: 'magento'
+    database_import_src: '/var/www/vagrant/import/database.sql'
     sys_packages:
       - mcrypt
       - vim
       - git
-
+    ip_address: '192.168.42.42'
     php_packages:
       - { name: dev, package: php5-dev }
       - { name: pear, package: php-pear }
@@ -27,6 +26,9 @@
       - { name: "mongo", package: "pecl.php.net/mongo" }
       - { name: "xhprof", package: "pecl.php.net/xhprof-beta" }
     php_ppa: php5-5.6
+    php_config:
+      - { param: "memory_limit", value: "256M" }
+      - { param: "date.timezone", value: "Europe/London" }
     nodejs:
       version: _5.x
       packages: [bower, gulp]
