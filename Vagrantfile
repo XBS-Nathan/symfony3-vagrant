@@ -2,7 +2,7 @@ require 'yaml'
 
 current_dir    = File.dirname(File.expand_path(__FILE__))
 configs        = YAML.load_file("#{current_dir}/ansible/site.yml")
-vagrant_config = configs['vars']
+vagrant_config = configs[0]['vars']
 
 Vagrant.configure("2") do |config|
     # Configure the box to use
