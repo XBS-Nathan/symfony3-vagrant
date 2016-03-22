@@ -18,3 +18,8 @@
     notify: restart nginx
     when: platform == "symfony"
 
+  - name: Change default nginx site to magento2 template
+    sudo: yes
+    template: src=magento2.tpl dest=/etc/nginx/sites-available/default
+    notify: restart nginx
+    when: platform == "magento2"
