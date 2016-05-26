@@ -4,9 +4,8 @@
   vars:
     doc_root: '/var/www/'
     platform: 'magento'
-    server_name: 'dev.batterystation.co.uk'
+    server_name: 'dev.mydomain.co.uk'
     database: 'magento'
-    database_import_src: '/var/www/vagrant/import/database.sql'
     sys_packages:
       - mcrypt
       - vim
