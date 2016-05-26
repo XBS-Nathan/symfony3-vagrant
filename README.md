@@ -1,8 +1,6 @@
 ####Configure anisble
 
-Open site.yml and configure the top section to project that you are workking on.
+Open site.yml within the ansible folder and configure the top section. Remove the roles you don't need for the project and once done, do vagrant up within the root directory of this repository.
 
-####Import database file
-
-chuck it into the import folder with the naming structure of database.sql
+The username for database access is the username root with no password.
 
